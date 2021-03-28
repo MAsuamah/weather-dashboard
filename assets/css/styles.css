@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  
+  
+}
+
+h1{
+  padding-top: 15px;
+  text-align: center;
+  color: white;
+}
+
+.col-4 {
+  background-image: url(../images/Weather\ Side\ Bar.png);
+  background-size: cover;
+  height: 800px;
+}
+
+.col-8 {
+  background-image: linear-gradient(to bottom right, salmon, lightsalmon, orange);
+}
+
+.form-inline {
+  padding: 40px;
+}
+
+.card-columns {
+  margin-top: 20px;
+}
