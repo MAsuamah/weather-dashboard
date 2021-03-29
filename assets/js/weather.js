@@ -30,7 +30,7 @@ var getWeatherInfo = function () {
       return Promise.reject(response);
     }
   }).then(function (forecast) {
-    console.log(city, forecast);
+    displayCurrentWeather (city, forecast);
   }).catch(function (error) {
     console.warn(error);
   });
