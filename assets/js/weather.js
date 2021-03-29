@@ -1,10 +1,11 @@
 var searchForm = document.querySelector("#search-form");
 var citySearch = document.querySelector("#city-search");
 var cityHeader = document.querySelector("#place");
-var currentDate = document.querySelector("#current-date")
-var currentWeather = document.querySelector("#current-date-weather")
-var caption = document.querySelector("#caption")
-var cards = document.querySelector(".all-cards")
+var currentDate = document.querySelector("#current-date");
+var currentIcon = document.querySelector("#current-date-icon");
+var currentTemp = document.querySelector("#current-date-temp");
+var caption = document.querySelector("#caption");
+var cards = document.querySelector(".all-cards");
 
 var getCurrentWeatherInfo = function(city) {
   var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=dba30060fc955c512265e193bbe9bba7&units=metric";
@@ -24,8 +25,9 @@ var displayCurrentWeather = function(data, search) {
   currentDate.textContent = moment().format("YYYY-MM-DD");
   var weatherIcon = document.createElement('img');
   weatherIcon.setAttribute("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
-  currentWeather.appendChild(weatherIcon);
-  console.log(weatherd);
+  currentIcon.appendChild(weatherIcon);
+  currentTemp.innerHTML = data.main.temp + "&deg;C"
+  console.log(data);
   console.log(search);
 };
 
