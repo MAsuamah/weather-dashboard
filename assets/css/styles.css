@@ -19,7 +19,7 @@ h1{
 .col-4 {
   background-image: url(../images/Weather\ Side\ Bar.png);
   background-size: cover;
-  height: 800px;
+  height: 900px;
 }
 
 .col-8 {
@@ -50,3 +50,32 @@ h2 {
   display: none;
 }
 
+#current-date-uv {
+  width: 25%;
+  padding: 5px;
+}
+
+.low { 
+  color: white;
+  background-color: green;
+}
+  
+.moderate { 
+  color: black;
+  background-color: yellow;
+}
+
+.high { 
+  color: black;
+  background-color: orange;
+}
+
+.very-high { 
+  color: white;
+  background-color: red;
+}
+
+.extreme { 
+  color: black;
+  background-color: violet;
+}
