@@ -68,11 +68,15 @@ var getWeatherInfo = function () {
   }).then(function (forecast) {
     displayCurrentWeather (city, forecast);
   }).catch(function (error) {
-    console.warn(error);
+    alert("We are unable to provide you with weather right now. Please try again at another time.");
   });
 };
 
 var displayCurrentWeather = function(present, forecast) {
+  //Removing home caption and displaying forecast cards
+  caption.setAttribute("class", "hidden");
+  cards.removeAttribute("class", "hidden");
+
   while (currentIcon.firstChild) {
     currentIcon.firstChild.remove()
   };
@@ -96,10 +100,6 @@ var displayCurrentWeather = function(present, forecast) {
   while (fifthDayIcon.firstChild) {
     fifthDayIcon.firstChild.remove()
   };
-
-  //Removing home caption and displaying forecast cards
-  caption.setAttribute("class", "hidden");
-  cards.removeAttribute("class", "hidden");
 
   //Display current weaather
   cityHeader.textContent = present.name;
@@ -170,7 +170,6 @@ var displayCurrentWeather = function(present, forecast) {
 
 var formSubmitHandler = function(event) {
   event.preventDefault();
-  console.log(event);
   var cityName = citySearch.value.trim();
 
   if (cityName) {
@@ -180,6 +179,5 @@ var formSubmitHandler = function(event) {
     alert("Please enter a city");
   } 
 };
-
 
 searchForm.addEventListener("submit", formSubmitHandler);
