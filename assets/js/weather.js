@@ -116,6 +116,14 @@ var displayCurrentWeather = function(present, forecast) {
 
   localStorage.setItem("prevSearches", JSON.stringify(savedCities))
 
+  //Create button
+  var searchedCities = document.createElement("button");
+  searchedCities.innerText = present.name
+  searchHistory.appendChild(searchedCities);
+
+
+
+
   //Display current weaather
   cityHeader.textContent = present.name;
   currentDate.textContent = moment().format("dddd, MMMM Do YYYY");
@@ -198,6 +206,5 @@ var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || []
 searchHistory.innerHTML = savedCities.map(city => {
   return `<button type="click" class="btn hist">${city}</button>`
 }).join("")
-
 
 searchForm.addEventListener("submit", formSubmitHandler);
