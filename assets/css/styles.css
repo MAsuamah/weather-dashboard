@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -31,10 +32,6 @@ margin-left: 60px;
 margin-top: 250px;
 }
 
-.card-columns {
-  margin-top: 20px;
-}
-
 h2 {
   color: white;
   font-size: 35px;
@@ -44,7 +41,22 @@ h2 {
 
 .all-cards {
   margin-top: 40px;
+}
 
+.w-75 h5 {
+  font-size: 25px;
+}
+
+.forecast {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  padding-right: 15px;
+}
+
+.card-body {
+  background-color: mistyrose;
 }
 
 .hidden {
@@ -79,4 +91,9 @@ h2 {
 .extreme { 
   color: black;
   background-color: violet;
+}
+
+.history {
+  background-color: mistyrose;
+  border-radius: 5px;
 }

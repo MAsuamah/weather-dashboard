@@ -2,6 +2,9 @@
 var searchForm = document.querySelector("#search-form");
 var citySearch = document.querySelector("#city-search");
 
+//Selectors for Histroy Column
+var searchHistory = document.querySelector("#history");
+
 //Selectors for Home Caption and Forecast Cards 
 var caption = document.querySelector("#caption");
 var cards = document.querySelector(".all-cards");
@@ -77,6 +80,7 @@ var displayCurrentWeather = function(present, forecast) {
   caption.setAttribute("class", "hidden");
   cards.removeAttribute("class", "hidden");
 
+
   while (currentIcon.firstChild) {
     currentIcon.firstChild.remove()
   };
@@ -100,6 +104,26 @@ var displayCurrentWeather = function(present, forecast) {
   while (fifthDayIcon.firstChild) {
     fifthDayIcon.firstChild.remove()
   };
+
+  //Add city to search History
+
+  var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || []
+  
+  //Empty array that will be used to load prev searches upon refresh
+  var hist = present.name
+
+  savedCities.push(hist)
+
+  localStorage.setItem("prevSearches", JSON.stringify(savedCities))
+
+  
+  //Show Current searches in history Column
+  localStorage.setItem("searchedCity", JSON.stringify(present.name))
+  var savedCity = JSON.parse(localStorage.getItem("searchedCity"))
+  var searchedCities = document.createElement("button");
+  searchedCities.innerText = savedCity
+  searchHistory.appendChild(searchedCities);
+
 
   //Display current weaather
   cityHeader.textContent = present.name;
@@ -171,7 +195,6 @@ var displayCurrentWeather = function(present, forecast) {
 var formSubmitHandler = function(event) {
   event.preventDefault();
   var cityName = citySearch.value.trim();
-
   if (cityName) {
     getWeatherInfo(cityName);
     citySearch.value = "";
@@ -179,5 +202,12 @@ var formSubmitHandler = function(event) {
     alert("Please enter a city");
   } 
 };
+
+window.onload = function() {
+  JSON.parse(localStorage.getItem("prevSearches")) || []
+} 
+
+
+
 
 searchForm.addEventListener("submit", formSubmitHandler);
