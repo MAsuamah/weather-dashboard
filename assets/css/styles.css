@@ -21,15 +21,21 @@ h1{
   background-image: url(../images/Weather\ Side\ Bar.png);
   background-size: cover;
   height: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .col-8 {
   background-image: linear-gradient(to bottom right, salmon, lightsalmon, orange);
 }
 
-.form-inline {
+form {
 margin-left: 60px;
-margin-top: 250px;
+margin-top: 30px;
+padding-bottom: 20px;
+
 }
 
 h2 {
@@ -96,4 +102,28 @@ h2 {
 .history {
   background-color: mistyrose;
   border-radius: 5px;
+}
+
+ul {
+  margin: 15px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  
+}
+
+li {
+  background-color: mistyrose;
+  border-style: solid;
+  border-width: 10px;
+  border-color: salmon;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+#clear {
+  margin-bottom: 15px;
 }

@@ -5,6 +5,7 @@ var citySearch = document.querySelector("#city-search");
 //Selectors for Histroy Column
 var searchHistory = document.querySelector("#history");
 var historyList = document.querySelector(".hist")
+var clearHistory = document.querySelector("#clear")
 
 
 //Selectors for Home Caption and Forecast Cards 
@@ -233,7 +234,6 @@ var historyFunction = function(event) {
   };
 
   getWeatherfromHistList()
-
 }
 
 var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || []
@@ -243,6 +243,11 @@ searchHistory.innerHTML = savedCities.map(city => {
 
 searchForm.addEventListener("submit", formSubmitHandler);
 
+clearHistory.addEventListener("click", function() {
+  localStorage.clear();
+  searchHistory.setAttribute("class", "hidden")
+  } 
+);
 
 
 
