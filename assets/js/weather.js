@@ -76,6 +76,7 @@ var getWeatherInfo = function () {
   });
 };
 
+
 var displayCurrentWeather = function(present, forecast) {
   //Removing home caption and displaying forecast cards
   caption.setAttribute("class", "hidden");
@@ -117,11 +118,12 @@ var displayCurrentWeather = function(present, forecast) {
   localStorage.setItem("prevSearches", JSON.stringify(savedCities))
 
   //Create button for recent search
-  var searchedCities = document.createElement("button");
-  searchedCities.innerText = present.name
+  var searchedCities = document.createElement("li");
+  searchedCities.textContent = present.name
   searchHistory.appendChild(searchedCities);
   searchedCities.setAttribute("class", "hist")
   searchedCities.setAttribute("id", present.name)
+  searchedCities.setAttribute("onclick", "historyFunction(event)")
 
   //Display current weaather
   cityHeader.textContent = present.name;
@@ -203,7 +205,35 @@ var formSubmitHandler = function(event) {
 
 var historyFunction = function(event) {
   var cityId = event.target.id
-  getWeatherInfo(cityId)
+
+  var getWeatherfromHistList = function () { 
+    fetch("http://api.openweathermap.org/data/2.5/weather?q=" + cityId + "&appid=dba30060fc955c512265e193bbe9bba7&units=metric").then(function (response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return Promise.reject(response);
+      }
+    }).then(function (data) {
+  
+    city = data;
+  
+    return fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&exclude={part}&appid=dba30060fc955c512265e193bbe9bba7&units=metric");
+  
+    }).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return Promise.reject(response);
+      }
+    }).then(function (forecast) {
+      displayCurrentWeather (city, forecast);
+    }).catch(function (error) {
+      alert("We are unable to provide you with weather right now. Please try again at another time.");
+    });
+  };
+
+  getWeatherfromHistList()
+
 }
 
 var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || []
