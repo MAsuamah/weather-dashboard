@@ -4,6 +4,8 @@ var citySearch = document.querySelector("#city-search");
 
 //Selectors for Histroy Column
 var searchHistory = document.querySelector("#history");
+var historyList = document.querySelector(".hist")
+
 
 //Selectors for Home Caption and Forecast Cards 
 var caption = document.querySelector("#caption");
@@ -48,7 +50,6 @@ var fifthDayIcon = document.querySelector("#day-5-icon");
 var fifthDayTemp = document.querySelector("#day-5-temp");
 var fifthDayHumidity = document.querySelector("#day-5-humidity");
 
-
 var getWeatherInfo = function () { 
   fetch("http://api.openweathermap.org/data/2.5/weather?q=" + document.querySelector("#city-search").value + "&appid=dba30060fc955c512265e193bbe9bba7&units=metric").then(function (response) {
     if (response.ok) {
@@ -79,7 +80,6 @@ var displayCurrentWeather = function(present, forecast) {
   //Removing home caption and displaying forecast cards
   caption.setAttribute("class", "hidden");
   cards.removeAttribute("class", "hidden");
-
 
   while (currentIcon.firstChild) {
     currentIcon.firstChild.remove()
@@ -116,13 +116,12 @@ var displayCurrentWeather = function(present, forecast) {
 
   localStorage.setItem("prevSearches", JSON.stringify(savedCities))
 
-  //Create button
+  //Create button for recent search
   var searchedCities = document.createElement("button");
   searchedCities.innerText = present.name
   searchHistory.appendChild(searchedCities);
-
-
-
+  searchedCities.setAttribute("class", "hist")
+  searchedCities.setAttribute("id", present.name)
 
   //Display current weaather
   cityHeader.textContent = present.name;
@@ -202,9 +201,19 @@ var formSubmitHandler = function(event) {
   } 
 };
 
+var historyFunction = function(event) {
+  var cityId = event.target.id
+  getWeatherInfo(cityId)
+}
+
 var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || []
 searchHistory.innerHTML = savedCities.map(city => {
-  return `<button type="click" class="btn hist">${city}</button>`
+  return `<li class="hist" id=${city} onclick="historyFunction(event)">${city}</li>`
 }).join("")
 
 searchForm.addEventListener("submit", formSubmitHandler);
+
+
+
+
+
