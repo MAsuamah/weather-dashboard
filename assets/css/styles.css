@@ -55,7 +55,7 @@ h2 {
 
 .forecast {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 20px;
   flex-wrap: wrap;
   padding-right: 15px;

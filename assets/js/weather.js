@@ -4,9 +4,7 @@ var citySearch = document.querySelector("#city-search");
 
 //Selectors for Histroy Column
 var searchHistory = document.querySelector("#history");
-var historyList = document.querySelector(".hist")
 var clearHistory = document.querySelector("#clear")
-
 
 //Selectors for Home Caption and Forecast Cards 
 var caption = document.querySelector("#caption");
@@ -51,6 +49,7 @@ var fifthDayIcon = document.querySelector("#day-5-icon");
 var fifthDayTemp = document.querySelector("#day-5-temp");
 var fifthDayHumidity = document.querySelector("#day-5-humidity");
 
+//Fetch weather from OpenWeatherMap when a city is searched
 var getWeatherInfo = function () { 
   fetch("http://api.openweathermap.org/data/2.5/weather?q=" + document.querySelector("#city-search").value + "&appid=dba30060fc955c512265e193bbe9bba7&units=metric").then(function (response) {
     if (response.ok) {
@@ -77,54 +76,42 @@ var getWeatherInfo = function () {
   });
 };
 
-
+//Displays the weather forcast on screen
 var displayCurrentWeather = function(present, forecast) {
   //Removing home caption and displaying forecast cards
   caption.setAttribute("class", "hidden");
   cards.removeAttribute("class", "hidden");
 
-  while (currentIcon.firstChild) {
-    currentIcon.firstChild.remove()
-  };
+  //Removes previous weather icons when a new city is searched 
+  removeChildren(currentIcon);
 
-  while (firstDayIcon.firstChild) {
-    firstDayIcon.firstChild.remove()
-  };
+  removeChildren(firstDayIcon);
 
-  while (secondDayIcon.firstChild) {
-    secondDayIcon.firstChild.remove()
-  };
+  removeChildren(secondDayIcon);
 
-  while (thirdDayIcon.firstChild) {
-    thirdDayIcon.firstChild.remove()
-  };
+  removeChildren(thirdDayIcon);
 
-  while (fourthDayIcon.firstChild) {
-    fourthDayIcon.firstChild.remove()
-  };
+  removeChildren(fourthDayIcon);
 
-  while (fifthDayIcon.firstChild) {
-    fifthDayIcon.firstChild.remove()
-  };
+  removeChildren(fifthDayIcon);
 
-  //Add city to search History
-
-  var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || []
+  //Save recent search in local storage
+  var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || [];
   
-  //Empty array that will be used to load prev searches upon refresh
-  var hist = present.name
+  var hist = present.name;
 
-  savedCities.push(hist)
+  if(savedCities.indexOf(hist) == -1){
+    savedCities.push(hist); 
+    //Display li element for recent search
+    var searchedCities = document.createElement("li");
+    searchedCities.textContent = present.name;
+    searchHistory.appendChild(searchedCities);
+    searchedCities.setAttribute("class", "hist");
+    searchedCities.setAttribute("id", present.name);
+    searchedCities.setAttribute("onclick", "historyFunction(event)");
+      } 
 
-  localStorage.setItem("prevSearches", JSON.stringify(savedCities))
-
-  //Create button for recent search
-  var searchedCities = document.createElement("li");
-  searchedCities.textContent = present.name
-  searchHistory.appendChild(searchedCities);
-  searchedCities.setAttribute("class", "hist")
-  searchedCities.setAttribute("id", present.name)
-  searchedCities.setAttribute("onclick", "historyFunction(event)")
+  localStorage.setItem("prevSearches", JSON.stringify(savedCities));
 
   //Display current weaather
   cityHeader.textContent = present.name;
@@ -193,6 +180,7 @@ var displayCurrentWeather = function(present, forecast) {
   console.log(forecast);
 };
 
+//Handles API fetch by filling out form
 var formSubmitHandler = function(event) {
   event.preventDefault();
   var cityName = citySearch.value.trim();
@@ -204,8 +192,9 @@ var formSubmitHandler = function(event) {
   } 
 };
 
+//Handles API fetch by clicking on item from history list
 var historyFunction = function(event) {
-  var cityId = event.target.id
+  var cityId = event.target.id;
 
   var getWeatherfromHistList = function () { 
     fetch("http://api.openweathermap.org/data/2.5/weather?q=" + cityId + "&appid=dba30060fc955c512265e193bbe9bba7&units=metric").then(function (response) {
@@ -233,21 +222,29 @@ var historyFunction = function(event) {
     });
   };
 
-  getWeatherfromHistList()
-}
+  getWeatherfromHistList();
+};
 
-var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || []
+//Handles child removal for history list and weather icons
+var removeChildren = function(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  };
+};
+
+//Present local storage array as a history search list
+var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || [];
 searchHistory.innerHTML = savedCities.map(city => {
-  return `<li class="hist" id=${city} onclick="historyFunction(event)">${city}</li>`
-}).join("")
+  return `<li id=${city} onclick="historyFunction(event)">${city}</li>`
+}).join("");
+
 
 searchForm.addEventListener("submit", formSubmitHandler);
 
 clearHistory.addEventListener("click", function() {
   localStorage.clear();
-  searchHistory.setAttribute("class", "hidden")
-  } 
-);
+  removeChildren(searchHistory);
+});
 
 
 
