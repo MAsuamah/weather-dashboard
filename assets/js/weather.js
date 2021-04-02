@@ -2,7 +2,7 @@
 var searchForm = document.querySelector("#search-form");
 var citySearch = document.querySelector("#city-search");
 
-//Selectors for Histroy Column
+//Selectors for History Column
 var searchHistory = document.querySelector("#history");
 var clearHistory = document.querySelector("#clear")
 
@@ -76,7 +76,6 @@ var getWeatherInfo = function () {
   });
 };
 
-//Displays the weather forcast on screen
 var displayCurrentWeather = function(present, forecast) {
   //Removing home caption and displaying forecast cards
   caption.setAttribute("class", "hidden");
@@ -95,14 +94,17 @@ var displayCurrentWeather = function(present, forecast) {
 
   removeChildren(fifthDayIcon);
 
-  //Save recent search in local storage
+  //Get local storage
   var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || [];
   
+  //Get name of city searched and save to variable
   var hist = present.name;
 
+  //Check if item already exists in array Ref:https://www.codegrepper.com/code-examples/javascript/how+to+check+if+value+already+exists+in+array+javascript
   if(savedCities.indexOf(hist) == -1){
+    //If city doesn't already exist push to array
     savedCities.push(hist); 
-    //Display li element for recent search
+    //If city doesn't already exist add to history list
     var searchedCities = document.createElement("li");
     searchedCities.textContent = present.name;
     searchHistory.appendChild(searchedCities);
@@ -113,7 +115,7 @@ var displayCurrentWeather = function(present, forecast) {
 
   localStorage.setItem("prevSearches", JSON.stringify(savedCities));
 
-  //Display current weaather
+  //Display current weather
   cityHeader.textContent = present.name;
   currentDate.textContent = moment().format("dddd, MMMM Do YYYY");
   var weatherIcon = document.createElement("img");
@@ -124,6 +126,7 @@ var displayCurrentWeather = function(present, forecast) {
   currentWind.innerHTML = "Wind Speed:" + " " + present.wind.speed + " " + "km/h";
   uvIndex.textContent = "UV Index:" + " " + forecast.current.uvi;
   
+  //Colour code UV Index Ref: https://en.wikipedia.org/wiki/Ultraviolet_index
   if (forecast.current.uvi >= 0 && forecast.current.uvi < 3) {
     uvIndex.setAttribute("class", "low");
   } else if (forecast.current.uvi >= 3 && forecast.current.uvi < 6) {
@@ -225,22 +228,23 @@ var historyFunction = function(event) {
   getWeatherfromHistList();
 };
 
-//Handles child removal for history list and weather icons
+//Handles child removal for history list and weather icons Ref: https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
 var removeChildren = function(parent) {
   while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
   };
 };
 
-//Present local storage array as a history search list
+//Presents local storage as a history search list when page is loaded/refreshed
 var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || [];
 searchHistory.innerHTML = savedCities.map(city => {
   return `<li id=${city} onclick="historyFunction(event)">${city}</li>`
 }).join("");
 
-
+//Gets weather info when form is submitted
 searchForm.addEventListener("submit", formSubmitHandler);
 
+//Clears local storage and history list
 clearHistory.addEventListener("click", function() {
   localStorage.clear();
   removeChildren(searchHistory);

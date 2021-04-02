@@ -17,6 +17,14 @@ h1{
   font-size: 50px;
 }
 
+h2 {
+  color: white;
+  font-size: 35px;
+  font-weight: 100;
+  margin: 150px;
+}
+
+/*Column Styling Starts*/
 #left {
   background-image: url(../images/Weather\ Side\ Bar.png);
   background-size: cover;
@@ -30,21 +38,49 @@ h1{
 #right {
   background-image: linear-gradient(to bottom right, salmon, lightsalmon, orange);
 }
+/*Column Styling Ends*/
 
+
+/* Search and History Styling Starts */
 form {
   margin-left: 60px;
   margin-top: 30px;
   padding-bottom: 20px;
-
 }
 
-h2 {
-  color: white;
-  font-size: 35px;
-  font-weight: 100;
-  margin: 150px;
+.history {
+  background-color: mistyrose;
+  border-radius: 5px;
 }
 
+ul {
+  margin: 15px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  
+}
+
+li {
+  background-color: mistyrose;
+  list-style: none;
+  border-style: solid;
+  border-width: 7px;
+  border-color: salmon;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+#clear {
+  margin-bottom: 15px;
+}
+/* Search and History Styling Ends */
+
+
+/* Forecast Styling Starts */
 .all-cards {
   margin-top: 40px;
 }
@@ -98,38 +134,10 @@ h2 {
   color: black;
   background-color: violet;
 }
-
-.history {
-  background-color: mistyrose;
-  border-radius: 5px;
-}
-
-ul {
-  margin: 15px;
-  text-align: center;
-  padding: 5px;
-  border-radius: 5px;
-  
-}
-
-li {
-  background-color: mistyrose;
-  list-style: none;
-  border-style: solid;
-  border-width: 7px;
-  border-color: salmon;
-  border-radius: 5px;
-  margin: 5px;
-  padding: 5px;
-  font-size: 25px;
-  cursor: pointer;
-}
-
-#clear {
-  margin-bottom: 15px;
-}
+/* Forecast Styling Ends */
 
 
+/*Media Query Styling */
 @media screen and (max-width: 1069px) {
   #search-btn {
     display: flex;
@@ -144,5 +152,4 @@ li {
   #left {
     height: 300px;
   }
-
 }
