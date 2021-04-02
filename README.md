@@ -10,7 +10,7 @@ future conditions including, the temperature, humidity, and icon representation 
 you with its weather conditions again. The search history lists will persist upon refresh or re-opening the page at a later time. Click
 the clear history button to clear the list.
 
-![screencapture-127-0-0-1-5500-index-html-2021-04-01-22_29_46](https://user-images.githubusercontent.com/77217156/113373905-e3d8fe80-9339-11eb-866c-de0b4436435e.png)
+![Untitled design](https://user-images.githubusercontent.com/77217156/113458864-c0698e80-93e1-11eb-927c-079cd0c00bac.gif)
 
 ## Built With
 * HTML
