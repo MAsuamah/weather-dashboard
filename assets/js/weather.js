@@ -51,7 +51,7 @@ var fifthDayHumidity = document.querySelector("#day-5-humidity");
 
 //Fetch weather from OpenWeatherMap when a city is searched
 var getWeatherInfo = function () { 
-  fetch("http://api.openweathermap.org/data/2.5/weather?q=" + document.querySelector("#city-search").value + "&appid=dba30060fc955c512265e193bbe9bba7&units=metric").then(function (response) {
+  fetch("https://api.openweathermap.org/data/2.5/weather?q=" + document.querySelector("#city-search").value + "&appid=dba30060fc955c512265e193bbe9bba7&units=metric").then(function (response) {
     if (response.ok) {
       return response.json();
     } else {
