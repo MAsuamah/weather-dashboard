@@ -35,6 +35,8 @@ https://stackoverflow.com/questions/10291017/how-to-get-id-of-button-user-just-c
 
 https://www.codegrepper.com/code-examples/javascript/how+to+check+if+value+already+exists+in+array+javascript
 
+https://dmitripavlutin.com/replace-all-string-occurrences-javascript/
+
 ## Contributors
 Michelle Asuamah
 

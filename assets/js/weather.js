@@ -197,7 +197,8 @@ var formSubmitHandler = function(event) {
 
 //Handles API fetch by clicking on item from history list
 var historyFunction = function(event) {
-  var cityId = event.target.id;
+  var cityId = event.target.id
+  
 
   var getWeatherfromHistList = function () { 
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityId + "&appid=dba30060fc955c512265e193bbe9bba7&units=metric").then(function (response) {
@@ -238,7 +239,7 @@ var removeChildren = function(parent) {
 //Presents local storage as a history search list when page is loaded/refreshed
 var savedCities = JSON.parse(localStorage.getItem("prevSearches")) || [];
 searchHistory.innerHTML = savedCities.map(city => {
-  return `<li id=${city} onclick="historyFunction(event)">${city}</li>`
+  return `<li id=${city.replace(" ", "+")} onclick="historyFunction(event)">${city}</li>`
 }).join("");
 
 //Gets weather info when form is submitted
