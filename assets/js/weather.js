@@ -119,7 +119,7 @@ var displayCurrentWeather = function(present, forecast) {
   cityHeader.textContent = present.name;
   currentDate.textContent = moment().format("dddd, MMMM Do YYYY");
   var weatherIcon = document.createElement("img");
-  weatherIcon.setAttribute("src", "http://openweathermap.org/img/w/" + present.weather[0].icon + ".png");
+  weatherIcon.setAttribute("src", "https://openweathermap.org/img/w/" + present.weather[0].icon + ".png");
   currentIcon.appendChild(weatherIcon);
   currentTemp.innerHTML = "Temperature:" + " " + present.main.temp + "&deg;C";
   currentHumidity.innerHTML = "Humidity:" + " " + present.main.humidity + "&percnt;";
@@ -142,7 +142,7 @@ var displayCurrentWeather = function(present, forecast) {
   //Display day 1 of 5
   firstDay.textContent =  moment(). add(1,"days"). format("MMMM Do");
   var firstDaySymbol = document.createElement("img");
-  firstDaySymbol.setAttribute("src", "http://openweathermap.org/img/w/" + forecast.daily[1].weather[0].icon + ".png");
+  firstDaySymbol.setAttribute("src", "https://openweathermap.org/img/w/" + forecast.daily[1].weather[0].icon + ".png");
   firstDayIcon.appendChild(firstDaySymbol);
   firstDayTemp.innerHTML = "Temp:" + " " + forecast.daily[1].temp.day + "&deg;C";
   firstDayHumidity.innerHTML = "Humidity:" + " " + forecast.daily[1].humidity + "&percnt;";
@@ -150,7 +150,7 @@ var displayCurrentWeather = function(present, forecast) {
   //Display day 2 of 5
   secondDay.textContent =  moment(). add(2,"days"). format("MMMM Do");
   var secondDaySymbol = document.createElement("img");
-  secondDaySymbol.setAttribute("src", "http://openweathermap.org/img/w/" + forecast.daily[2].weather[0].icon + ".png");
+  secondDaySymbol.setAttribute("src", "https://openweathermap.org/img/w/" + forecast.daily[2].weather[0].icon + ".png");
   secondDayIcon.appendChild(secondDaySymbol);
   secondDayTemp.innerHTML = "Temp:" + " " + forecast.daily[2].temp.day + "&deg;C";
   secondDayHumidity.innerHTML = "Humidity:" + " " + forecast.daily[2].humidity + "&percnt;";
@@ -158,7 +158,7 @@ var displayCurrentWeather = function(present, forecast) {
   //Display day 3 of 5
   thirdDay.textContent =  moment(). add(3,"days"). format("MMMM Do");
   var thirdDaySymbol = document.createElement("img");
-  thirdDaySymbol.setAttribute("src", "http://openweathermap.org/img/w/" + forecast.daily[3].weather[0].icon + ".png");
+  thirdDaySymbol.setAttribute("src", "https://openweathermap.org/img/w/" + forecast.daily[3].weather[0].icon + ".png");
   thirdDayIcon.appendChild(thirdDaySymbol);
   thirdDayTemp.innerHTML = "Temp:" + " " + forecast.daily[3].temp.day + "&deg;C";
   thirdDayHumidity.innerHTML = "Humidity:" + " " + forecast.daily[3].humidity + "&percnt;";
@@ -166,7 +166,7 @@ var displayCurrentWeather = function(present, forecast) {
   //Display day 4 of 5
   fourthDay.textContent =  moment(). add(4,"days"). format("MMMM Do");
   var fourthDaySymbol = document.createElement("img");
-  fourthDaySymbol.setAttribute("src", "http://openweathermap.org/img/w/" + forecast.daily[4].weather[0].icon + ".png");
+  fourthDaySymbol.setAttribute("src", "https://openweathermap.org/img/w/" + forecast.daily[4].weather[0].icon + ".png");
   fourthDayIcon.appendChild(fourthDaySymbol);
   fourthDayTemp.innerHTML = "Temp:" + " " + forecast.daily[4].temp.day + "&deg;C";
   fourthDayHumidity.innerHTML = "Humidity:" + " " + forecast.daily[4].humidity + "&percnt;";
@@ -174,7 +174,7 @@ var displayCurrentWeather = function(present, forecast) {
   //Display day 5 of 5
   fifthDay.textContent =  moment(). add(5,"days"). format("MMMM Do");
   var fifthDaySymbol = document.createElement("img");
-  fifthDaySymbol.setAttribute("src", "http://openweathermap.org/img/w/" + forecast.daily[5].weather[0].icon + ".png");
+  fifthDaySymbol.setAttribute("src", "https://openweathermap.org/img/w/" + forecast.daily[5].weather[0].icon + ".png");
   fifthDayIcon.appendChild(fifthDaySymbol);
   fifthDayTemp.innerHTML = "Temp:" + " " + forecast.daily[5].temp.day + "&deg;C";
   fifthDayHumidity.innerHTML = "Humidity:" + " " + forecast.daily[5].humidity + "&percnt;";
@@ -200,7 +200,7 @@ var historyFunction = function(event) {
   var cityId = event.target.id;
 
   var getWeatherfromHistList = function () { 
-    fetch("http://api.openweathermap.org/data/2.5/weather?q=" + cityId + "&appid=dba30060fc955c512265e193bbe9bba7&units=metric").then(function (response) {
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityId + "&appid=dba30060fc955c512265e193bbe9bba7&units=metric").then(function (response) {
       if (response.ok) {
         return response.json();
       } else {
