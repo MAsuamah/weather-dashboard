@@ -7,7 +7,7 @@ weather as well as the five day forecast by simply searching the city you are in
 of the conditions, and a colour coded UV index representing the severity of the conditions. You will also be provided with a five day forecast of 
 future conditions including, the temperature, humidity, and icon representation of the conditions.
 * Every city you search will be saved to the search history in the left column. Clicking the city name in the search history will present
-you with its weather conditions again. The search history lists will persist upon refresh or re-opening the page at a later time. Click
+you with its weather conditions again. The search history list will persist upon refresh or re-opening the page at a later time. Click
 the clear history button to clear the list.
 
 ![Untitled design](https://user-images.githubusercontent.com/77217156/113458864-c0698e80-93e1-11eb-927c-079cd0c00bac.gif)
