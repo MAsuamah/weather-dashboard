@@ -31,6 +31,7 @@ the clear history button to clear the list.
 * Javascript
 * Moment
 * Bootstrap
+* Open Weather API
 
 ## Website
 https://masuamah.github.io/weather-dashboard/
