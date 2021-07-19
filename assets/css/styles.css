@@ -154,3 +154,10 @@ li {
     height: 300px;
   }
 }
+
+@media screen and (max-width: 560px) {
+  #caption{
+    margin: 50px;
+    margin-bottom: 170px;
+  }
+}
