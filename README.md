@@ -3,14 +3,27 @@ The weather dashboard was built to provide instant access to the weather outlook
 weather as well as the five day forecast by simply searching the city you are interested in.
 
 ## How it Works
-* Search a city name using the form in the left column. You will be provided with the current temperature, humidity, wind speed, icon representation 
-of the conditions, and a colour coded UV index representing the severity of the conditions. You will also be provided with a five day forecast of 
-future conditions including, the temperature, humidity, and icon representation of the conditions.
-* Every city you search will be saved to the search history in the left column. Clicking the city name in the search history will present
-you with its weather conditions again. The search history lists will persist upon refresh or re-opening the page at a later time. Click
+
+### Search a city to Get the Current Weather and Five Day Forecast
+Search a city name using the form in the left column. 
+* You will be provided with the current:
+  * Temperature
+  * Humidity 
+  * Wind speed 
+  * Icon representation of the conditions
+  * A colour coded UV index representing the severity of the conditions. 
+ 
+* You will also be provided with a five day forecast of future conditions including: 
+  * Temperature
+  * Humidity
+  * Icon representation of the conditions
+
+### Search History
+Every city you search will be saved to the search history in the left column. Clicking the city name in the search history will present
+you with its weather conditions again. The search history list will persist upon refresh or re-visiting the page at a later time. Click
 the clear history button to clear the list.
 
-![screencapture-127-0-0-1-5500-index-html-2021-04-01-22_29_46](https://user-images.githubusercontent.com/77217156/113373905-e3d8fe80-9339-11eb-866c-de0b4436435e.png)
+![Untitled design](https://user-images.githubusercontent.com/77217156/113458864-c0698e80-93e1-11eb-927c-079cd0c00bac.gif)
 
 ## Built With
 * HTML
@@ -18,6 +31,7 @@ the clear history button to clear the list.
 * Javascript
 * Moment
 * Bootstrap
+* Open Weather API
 
 ## Website
 https://masuamah.github.io/weather-dashboard/
